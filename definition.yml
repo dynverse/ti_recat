@@ -1,5 +1,6 @@
 id: recat
 docker_repository: dynverse/ti_recat
+singularity_collection: 1573
 container_url: https://github.com/dynverse/ti_recat
 name: reCAT
 type: algorithm
