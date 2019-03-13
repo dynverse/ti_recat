@@ -1,83 +1,102 @@
-id: recat
-docker_repository: dynverse/ti_recat
-singularity_collection: 1573
-container_url: https://github.com/dynverse/ti_recat
-name: reCAT
-source: tool
-platform: R
-doi: 10.1038/s41467-017-00039-z
-google_scholar_cluster_id: '10600621261210432161'
-trajectory_types: cycle
-topology_inference: fixed
-publication_date: '2017-06-19'
-code_url: https://github.com/tinglab/reCAT
+method:
+  id: recat
+  name: reCAT
+  tool_id: recat
+  source: tool
+  platform: R
+  url: https://github.com/tinglab/reCAT
+  authors:
+  - given: Riu
+    family: Jian
+    email: ruijiang@gmail.com
+    github: louhzmaki
+
+manuscript:
+  doi: '10.1038/s41467-017-00039-z'
+  google_scholar_cluster_id: '10600621261210432161'
+  publication_date: '2017-06-19'
+
+container:
+  url: https://github.com/dynverse/ti_recat
+  docker: dynverse/ti_recat
+
+wrapper:
+  type: cyclic_trajectory
+  topology_inference: fixed
+  trajectory_types:
+  - cycle
+  example: /code/example.R
+  input_required:
+  - expression
+
+
 parameters:
-  TSPFold:
+  - id: TSPFold
     type: integer
     default: 2.0
-    upper: 10.0
-    lower: 2.0
+    distribution:
+      type: uniform
+      upper: 10.0
+      lower: 2.0
     description: No documentation provided by authors
-  beginNum:
+  - id: beginNum
     type: integer
     default: 10.0
-    upper: 20.0
-    lower: 2.0
+    distribution:
+      type: uniform
+      upper: 20.0
+      lower: 2.0
     description: No documentation provided by authors
-  endNum:
+  - id: endNum
     type: integer
     default: 15.0
-    upper: 20.0
-    lower: 2.0
+    distribution:
+      type: uniform
+      upper: 20.0
+      lower: 2.0
     description: No documentation provided by authors
-  step_size:
+  - id: step_size
     type: integer
     default: 2.0
-    upper: 20.0
-    lower: 2.0
+    distribution:
+      type: uniform
+      upper: 20.0
+      lower: 2.0
     description: |-
       Determines the number of k to skip in your consensus path, ie if
       step_size = 2, then reCAT would only calculate and merge the paths for
       k = 12, 14, 16, 18, ..., n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time.
-  base_cycle_range_start:
+  - id: base_cycle_range_start
     type: integer
     default: 6.0
-    upper: 7.0
-    lower: 6.0
+    distribution:
+      type: uniform
+      upper: 7.0
+      lower: 6.0
     description: The minimal number of four k's for computing the reference cycle
       mentioned in the manuscript. Can be set to 6 or 7
-  base_cycle_range_end:
+  - id: base_cycle_range_end
     type: integer
     default: 9.0
-    upper: 10.0
-    lower: 9.0
+    distribution:
+      type: uniform
+      upper: 10.0
+      lower: 9.0
     description: The maximal number of four k's for computing the reference cycle
       mentioned in the manuscript. Can be set to 6 or 7
-  max_num:
+  - id: max_num
     type: integer
     default: 300.0
-    upper: 500.0
-    lower: 100.0
+    distribution:
+      type: uniform
+      upper: 500.0
+      lower: 100.0
     description: No documentation provided by authors
-  clustMethod:
-    type: discrete
+  - id: clustMethod
+    type: character
     default: GMM
     values:
     - GMM
     - Pam
     - Kmeans
     description: No documentation provided by authors
-input:
-  format: rds
-  required: expression
-output:
-  format: rds
-  outputs:
-  - cyclic_trajectory
-  - timings
-wrapper_type: cyclic_trajectory
-authors:
-- given: Riu
-  family: Jian
-  email: ruijiang@gmail.com
-  github: louhzmaki
