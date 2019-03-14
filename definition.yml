@@ -23,12 +23,8 @@ container:
 wrapper:
   type: cyclic_trajectory
   topology_inference: fixed
-  trajectory_types:
-  - cycle
-  example: /code/example.R
-  input_required:
-  - expression
-
+  trajectory_types: cycle
+  input_required: expression
 
 parameters:
   - id: TSPFold
