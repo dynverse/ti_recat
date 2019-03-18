@@ -27,7 +27,7 @@ result <- reCAT::bestEnsembleComplexTSP(
   TSPFold = params$TSPFold,
   beginNum = params$beginNum,
   endNum = params$endNum,
-  base_cycle_range = seq(params$base_cycle_range_start, params$base_cycle_range_end),
+  base_cycle_range = params$base_cycle_range,
   step_size = params$step_size,
   max_num = params$max_num,
   clustMethod = params$clustMethod,
