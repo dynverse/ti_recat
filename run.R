@@ -13,7 +13,7 @@ library(reCAT)
 #   Load data                                                               ####
 
 expression <- task$expression
-params <- task$params
+parameters <- task$parameters
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
@@ -24,13 +24,13 @@ checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 # run reCAT
 result <- reCAT::bestEnsembleComplexTSP(
   test_exp = expression,
-  TSPFold = params$TSPFold,
-  beginNum = params$beginNum,
-  endNum = params$endNum,
-  base_cycle_range = params$base_cycle_range,
-  step_size = params$step_size,
-  max_num = params$max_num,
-  clustMethod = params$clustMethod,
+  TSPFold = parameters$TSPFold,
+  beginNum = parameters$beginNum,
+  endNum = parameters$endNum,
+  base_cycle_range = parameters$base_cycle_range,
+  step_size = parameters$step_size,
+  max_num = parameters$max_num,
+  clustMethod = parameters$clustMethod,
   threads = 1,
   output = FALSE
 )
