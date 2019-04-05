@@ -2,12 +2,9 @@
 
 task <- dyncli::main()
 
-library(jsonlite)
-library(readr)
-library(dplyr)
-library(purrr)
-
-library(reCAT)
+library(dplyr, warn.conflicts = FALSE)
+library(purrr, warn.conflicts = FALSE)
+library(reCAT, warn.conflicts = FALSE)
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -19,7 +16,7 @@ parameters <- task$parameters
 #   Infer trajectory                                                        ####
 
 # TIMING: done with preproc
-checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
+checkpoints <- list(method_afterpreproc = Sys.time())
 
 # run reCAT
 result <- reCAT::bestEnsembleComplexTSP(
@@ -36,7 +33,7 @@ result <- reCAT::bestEnsembleComplexTSP(
 )
 
 # TIMING: done with method
-checkpoints$method_aftermethod <- as.numeric(Sys.time())
+checkpoints$method_aftermethod <- Sys.time()
 
 pseudotime <- result$ensembleResultLst[dim(result$ensembleResultLst)[1], ] %>% set_names(rownames(expression))
 
